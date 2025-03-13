@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/convenience-clock/static/css/main.5d3f3a66.css",
-    "main.js": "/convenience-clock/static/js/main.ba769426.js",
+    "main.js": "/convenience-clock/static/js/main.f02d90a1.js",
     "static/js/453.dfd4868f.chunk.js": "/convenience-clock/static/js/453.dfd4868f.chunk.js",
     "static/media/logo.svg": "/convenience-clock/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/convenience-clock/index.html",
     "main.5d3f3a66.css.map": "/convenience-clock/static/css/main.5d3f3a66.css.map",
-    "main.ba769426.js.map": "/convenience-clock/static/js/main.ba769426.js.map",
+    "main.f02d90a1.js.map": "/convenience-clock/static/js/main.f02d90a1.js.map",
     "453.dfd4868f.chunk.js.map": "/convenience-clock/static/js/453.dfd4868f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5d3f3a66.css",
-    "static/js/main.ba769426.js"
+    "static/js/main.f02d90a1.js"
   ]
 }
