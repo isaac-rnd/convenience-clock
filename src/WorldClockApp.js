@@ -48,7 +48,7 @@ const WorldClockApp = () => {
       name: 'German Time', 
       shortName: isDST(currentTime, 'Europe/Berlin') ? 'CEST' : 'CET ', 
       timezone: 'Europe/Berlin', 
-      offset: isDST(currentTime, 'Europe/Berlin') ? 2 : 1, 
+      offset: isDST(currentTime, 'Europe/Berlin') ? 1 : 0, 
       major: true,
       bgColor: 'from-black via-red-600 to-yellow-500'
     },
@@ -57,7 +57,7 @@ const WorldClockApp = () => {
       name: 'Romanian Time', 
       shortName: isDST(currentTime, 'Europe/Bucharest') ? 'EEST' : 'EET', 
       timezone: 'Europe/Bucharest', 
-      offset: isDST(currentTime, 'Europe/Bucharest') ? 3 : 2, 
+      offset: isDST(currentTime, 'Europe/Bucharest') ? 2 : 1, 
       major: true,
       bgColor: 'from-blue-700 via-yellow-500 to-red-600'
     },
@@ -66,7 +66,7 @@ const WorldClockApp = () => {
       name: 'Central European Time', 
       shortName: isDST(currentTime, 'Europe/Paris') ? 'CEST' : 'CET', 
       timezone: 'Europe/Paris', 
-      offset: isDST(currentTime, 'Europe/Paris') ? 2 : 1, 
+      offset: isDST(currentTime, 'Europe/Paris') ? 1 : 0, 
       major: false,
       bgColor: 'from-blue-600 via-yellow to-blue-600'  
     },
