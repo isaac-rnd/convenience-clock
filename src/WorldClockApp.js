@@ -46,7 +46,7 @@ const WorldClockApp = () => {
     { 
       id: 3, 
       name: 'German Time', 
-      shortName: isDST(currentTime, 'Europe/Berlin') ? 'CEST' : 'CET ', 
+      shortName: 'CET ', 
       timezone: 'Europe/Berlin', 
       offset: isDST(currentTime, 'Europe/Berlin') ? 1 : 0, 
       major: true,
@@ -55,7 +55,7 @@ const WorldClockApp = () => {
     { 
       id: 4, 
       name: 'Romanian Time', 
-      shortName: isDST(currentTime, 'Europe/Bucharest') ? 'EEST' : 'EET', 
+      shortName: 'EEST', 
       timezone: 'Europe/Bucharest', 
       offset: isDST(currentTime, 'Europe/Bucharest') ? 2 : 1, 
       major: true,
