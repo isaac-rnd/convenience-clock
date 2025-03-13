@@ -55,7 +55,7 @@ const WorldClockApp = () => {
     { 
       id: 4, 
       name: 'Romanian Time', 
-      shortName: 'EEST', 
+      shortName: 'EET', 
       timezone: 'Europe/Bucharest', 
       offset: isDST(currentTime, 'Europe/Bucharest') ? 2 : 1, 
       major: true,
@@ -64,7 +64,7 @@ const WorldClockApp = () => {
     { 
       id: 5, 
       name: 'Central European Time', 
-      shortName: isDST(currentTime, 'Europe/Paris') ? 'CEST' : 'CET', 
+      shortName: 'CET', 
       timezone: 'Europe/Paris', 
       offset: isDST(currentTime, 'Europe/Paris') ? 1 : 0, 
       major: false,
@@ -73,7 +73,7 @@ const WorldClockApp = () => {
     { 
       id: 6, 
       name: 'US Eastern Time', 
-      shortName: isDST(currentTime, 'America/New_York') ? 'EDT' : 'EST'+ "for trump's tariff purposes", 
+      shortName:'ET', 
       timezone: 'America/New_York', 
       offset: isDST(currentTime, 'America/New_York') ? -4 : -5, 
       major: false,
