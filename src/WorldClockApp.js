@@ -217,8 +217,7 @@ const WorldClockApp = () => {
               </button>
             </div>
           </header>
-          
-          {/* Major Clocks - Side by Side in one row */}
+
           <div className="flex flex-wrap justify-center gap-4 mb-12 **w-full**">
             {clocks.filter(clock => clock.major).map(clock => (
               <div 
@@ -378,7 +377,7 @@ const WorldClockApp = () => {
         <div className="container mx-auto flex justify-center items-center text-sm text-gray-400">
           <span className="flex items-center">
             Made with <Heart className="mx-1 text-red-500 w-4 h-4" /> <a 
-              href="https://github.com/isaac-rnd/convenience-clock" className='text-green-500'>by Isaac<i> (gpt)</i> ಬೆಂಗಳೂರು </a> 
+              href="https://github.com/isaac-rnd/convenience-clock" className='text-green-500'>in ಬೆಂಗಳೂರು </a> 
             <a 
               href="https://github.com/isaac-rnd/convenience-clock" 
               target="_blank" 
