@@ -34,48 +34,47 @@ const WorldClockApp = () => {
       bgColor: 'from-gray-700 via-gray-600 to-gray-500' 
     },
     { 
-        id: 2, 
-        name: 'Indian Time ❤️', 
-        shortName: 'IST- Bengaluru❣️', 
-        timezone: 'Asia/Kolkata', 
-        offset: 5.5, 
-        major: true,
-        bgColor: 'from-orange-500 via-blue-400 to-green-600'
-      }
-    ,
+      id: 2, 
+      name: 'Indian Time ❤️', 
+      shortName: 'IST- Bengaluru❣️', 
+      timezone: 'Asia/Kolkata', 
+      offset: 5.5, 
+      major: true,
+      bgColor: 'from-orange-500 via-blue-400 to-green-600'
+    },
     { 
       id: 3, 
       name: 'German Time', 
-      shortName: 'CET ', 
+      shortName: 'CEST', 
       timezone: 'Europe/Berlin', 
-      offset: 2, 
+      offset: 2 + (isDST(currentTime, 'Europe/Berlin') ? 1 : 0), // DST: +1 hour
       major: true,
       bgColor: 'from-black via-red-600 to-yellow-500'
     },
     { 
       id: 4, 
       name: 'Romanian Time', 
-      shortName: 'EET', 
+      shortName: 'EEST', 
       timezone: 'Europe/Bucharest', 
-      offset: 3, 
+      offset: 3 + (isDST(currentTime, 'Europe/Bucharest') ? 1 : 0), // DST: +1 hour
       major: true,
       bgColor: 'from-blue-700 via-yellow-500 to-red-600'
     },
     { 
       id: 5, 
       name: 'Central European Time', 
-      shortName: 'CET', 
+      shortName: 'CEST', 
       timezone: 'Europe/Paris', 
-      offset: 2, 
+      offset: 2 + (isDST(currentTime, 'Europe/Paris') ? 1 : 0), // DST: +1 hour
       major: false,
       bgColor: 'from-blue-600 via-yellow to-blue-600'  
     },
     { 
       id: 6, 
       name: 'US Eastern Time', 
-      shortName:'ET', 
+      shortName:'EDT', 
       timezone: 'America/New_York', 
-      offset: -4, 
+      offset: -4 + (isDST(currentTime, 'America/New_York') ? 1 : 0), // DST: +1 hour
       major: false,
       bgColor: 'from-blue-600 via-white-200 to-red-600' 
     }
@@ -90,17 +89,20 @@ const WorldClockApp = () => {
     return false;
   }
 
-  // Calculate time for a specific timezone
-  const getTimeForTimezone = (offset) => {
-    const time = new Date(currentTime);
-    
-    // Reset to UTC time
-    time.setTime(time.getTime() + time.getTimezoneOffset() * 60000);
-    
-    // Add the timezone offset
-    time.setTime(time.getTime() + (offset * 60 * 60000));
-    
-    return time;
+  // Calculate time for a specific timezone using Intl API for accuracy
+  const getTimeForTimezone = (timezone) => {
+    try {
+      // Get the time string in the target timezone
+      const localeTimeString = currentTime.toLocaleString('en-US', {
+        timeZone: timezone,
+        hour12: false
+      });
+      // Parse it back to a Date object (in local time)
+      return new Date(localeTimeString);
+    } catch (e) {
+      // fallback: just return current time
+      return new Date(currentTime);
+    }
   };
 
   // Format time as HH:MM:SS
@@ -283,7 +285,7 @@ const WorldClockApp = () => {
                   </div>
                 ) : (
                   <div className="flex items-center justify-between">
-                    <time className="text-3xl font-mono font-bold text-white">{formatTime(getTimeForTimezone(clock.offset))}</time>
+                    <time className="text-3xl font-mono font-bold text-white">{formatTime(getTimeForTimezone(clock.timezone))}</time>
                     <button 
                       onClick={() => handleEdit(clock.id)}
                       className="text-white/70 hover:text-white p-1 transition-colors"
@@ -293,7 +295,7 @@ const WorldClockApp = () => {
                   </div>
                 )}
                 
-                <div className="mt-4 text-white/60">{formatDate(getTimeForTimezone(clock.offset))}</div>
+                <div className="mt-4 text-white/60">{formatDate(getTimeForTimezone(clock.timezone))}</div>
               </div>
             ))}
           </div>
@@ -351,7 +353,7 @@ const WorldClockApp = () => {
                       </div>
                     ) : (
                       <div className="flex items-center mt-1">
-                        <time className="text-xl font-mono font-semibold text-white">{formatTime(getTimeForTimezone(clock.offset))}</time>
+                        <time className="text-xl font-mono font-semibold text-white">{formatTime(getTimeForTimezone(clock.timezone))}</time>
                         <button 
                           onClick={() => handleEdit(clock.id)}
                           className="ml-2 text-white/60 hover:text-white transition-colors"
@@ -363,7 +365,7 @@ const WorldClockApp = () => {
                   </div>
                   
                   <div className="text-b text-m text-white/60">
-                    {formatDate(getTimeForTimezone(clock.offset))}
+                    {formatDate(getTimeForTimezone(clock.timezone))}
                   </div>
                 </div>
               </div>
