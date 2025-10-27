@@ -80,14 +80,29 @@ const WorldClockApp = () => {
     }
   ];
 
-  function isDST(date, timezone) {
-    const month = date.getMonth() + 1; 
-    if (timezone.includes('Europe') || timezone.includes('America')) {
-      return month >= 3 && month <= 10;
-    }
-    
-    return false;
+function isDST(date, timezone) {
+  const year = date.getFullYear();
+  const lastSunday = (y, month) => {
+    const lastDay = new Date(y, month + 1, 0);
+    const day = lastDay.getDay();
+    return new Date(y, month + 1, 0 - day);
+  };
+
+  if (timezone.includes('Europe')) {
+    const start = lastSunday(year, 2);
+    const end = lastSunday(year, 9); 
+    return date >= start && date < end;
   }
+
+  if (timezone.includes('America')) {
+    const march = new Date(year, 2, 1);
+    const november = new Date(year, 10, 1);
+    const start = new Date(year, 2, 1 + ((7 - march.getDay()) % 7) + 7);
+    const end = new Date(year, 10, 1 + ((7 - november.getDay()) % 7));
+    return date >= start && date < end;
+  }
+  return false;
+}
 
   // Calculate time for a specific timezone using Intl API for accuracy
   const getTimeForTimezone = (timezone) => {
